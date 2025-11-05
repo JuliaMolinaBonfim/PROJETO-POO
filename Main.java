@@ -1,9 +1,9 @@
 import java.util.ArrayList;
-aaaaaaaaaaaaaaa
+
 public class Main {
     public static void main(String[] args) {
         ArrayList<Animal> zoologico = new ArrayList<>();
-
+        System.out.println("oi");
         zoologico.add(new Hipopotamo("Bubu", 7, 1500, "cinza", true,
                 "rio", 3.5, 1.2, false, "andar", false, "herbívoro"));
 
