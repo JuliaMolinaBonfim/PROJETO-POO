@@ -24,64 +24,74 @@ abstract class Animal {
 
     }
 
-    public String getNome() { return nome;
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setNome(String nome) { this.nome = nome;
+    public double getPeso() {
+        return peso;
+    }
+    public void setPeso(double peso) {
+        this.peso = peso;
     }
 
-    public double getPeso() { return peso;
+    public int getIdade() {
+        return idade;
+    }
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
-    public void setPeso(double peso) { this.peso = peso;
+    public String getCor() {
+        return cor;
+    }
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
-    public int getIdade() { return idade;
+    public String getLocomocao() {
+        return locomocao;
+    }
+    public void setLocomocao(String locomocao) {
+        this.locomocao = locomocao;
     }
 
-    public void setIdade(int idade) { this.idade = idade;
+    public boolean isEmExtincao() {
+        return emExtincao;
+    }
+    public void setEmExtincao(boolean emExtincao) {
+        this.emExtincao = emExtincao;
     }
 
-    public String getCor() { return cor;
+    public double getAltura() {
+        return altura;
+    }
+    public void setAltura(double altura) {
+        this.altura = altura;
     }
 
-    public void setCor(String cor) {this.cor = cor;
+    public double getTamanho() {
+        return tamanho;
+    }
+    public void setTamanho(double tamanho) {
+        this.tamanho = tamanho;
     }
 
-    public String getLocomocao() { return locomocao;
+    public String getHabitat() {
+        return habitat;
+    }
+    public void setHabitat(String habitat) {
+        this.habitat = habitat;
     }
 
-    public void setLocomocao(String locomocao) {this.locomocao = locomocao;
+    public boolean isVivo() {
+        return vivo;
     }
-
-    public boolean isEmExtincao() {return emExtincao;
-    }
-
-    public void setEmExtincao(boolean emExtincao) {this.emExtincao = emExtincao;
-    }
-
-    public double getAltura() {return altura;
-    }
-
-    public void setAltura(double altura) {this.altura = altura;
-    }
-
-    public double getTamanho() {return tamanho;
-    }
-
-    public void setTamanho(double tamanho) {this.tamanho = tamanho;
-    }
-
-    public String getHabitat() {return habitat;
-    }
-
-    public void setHabitat(String habitat) {this.habitat = habitat;
-    }
-
-    public boolean isVivo() {return vivo;
-    }
-
-    public void setVivo(boolean vivo) {this.vivo = vivo;
+    public void setVivo(boolean vivo) {
+        this.vivo = vivo;
     }
 
     public abstract void emitirSom();

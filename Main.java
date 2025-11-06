@@ -5,16 +5,19 @@ public class Main {
         ArrayList<Animal> zoologico = new ArrayList<>();
         System.out.println("oiiiiiiiiiiiiiiiiiiiiiiii");
         zoologico.add(new Hipopotamo("Bubu", 7, 1500, "cinza", true,
-                "rio", 3.5, 1.2, false, "andar", false, "herbívoro"));
+                "rio", 3.5, 1.2, false, "andar", false, "herbívoro", "50s"));
 
         zoologico.add(new Macaco("Kiki", 3, 35, "marrom", true,
-                "floresta", 1.2, 0.8, false, "pular", true, "onívoro"));
+                "floresta", 1.2, 0.8, false, "pular", true, "onívoro", "12cm"));
 
         zoologico.add(new Cobra("Naja", 4, 6.2, "verde", true,
-                "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true));
+                "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true, "Jiboia"));
 
         zoologico.add(new Jacare("Guto", 9, 300, "verde escuro", true,
-                "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true));
+                "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true, "50"));
+
+        zoologico.add(new Girafa("Alex", 8, 800, "Amarela e Preta", true, "Terrestre", 1, 2.5, false,
+                "Patas", false, "Folhas", 30));
 
         System.out.println("\n🐾=== ZOOLÓGICO DOS ANIMAIS ===🐾\n");
 
@@ -48,6 +51,8 @@ public class Main {
                 ((Jacare) a).nadar();
                 ((Jacare) a).morder();
                 ((Jacare) a).tomarSol();
+            } else if (a instanceof Girafa) {
+                ((Girafa) a).comerFolha();
             }
             System.out.println("==================================\n");
         }

@@ -1,11 +1,14 @@
 public class Hipopotamo extends Mamifero {
+    private String tempoMergulho;
 
     public Hipopotamo(String nome, int idade, double peso, String cor, boolean vivo,
                       String habitat, double tamanho, double altura, boolean emExtincao,
-                      String locomocao, boolean domesticado, String habitoAlimentar) {
+                      String locomocao, boolean domesticado, String habitoAlimentar, String tempoMergulho) {
 
         super(nome, idade, peso, cor, vivo, habitat, tamanho, altura, emExtincao,
                 locomocao, domesticado, habitoAlimentar);
+
+        this.tempoMergulho = tempoMergulho;
     }
     public void emitirSom() {
         System.out.println(getNome() + " faz um som alto de grunhido!");

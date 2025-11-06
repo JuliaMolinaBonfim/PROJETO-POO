@@ -18,29 +18,61 @@ public class Usuario {
         this.motivoVisita = motivoVisita;
     }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-    public String getDataNascimento() { return dataNascimento; }
-    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
-    public String getDataVisita() { return dataVisita; }
-    public void setDataVisita(String dataVisita) { this.dataVisita = dataVisita; }
+    public String getDataVisita() {
+        return dataVisita;
+    }
+    public void setDataVisita(String dataVisita) {
+        this.dataVisita = dataVisita;
+    }
 
-    public String getHoraEntrada() { return horaEntrada; }
-    public void setHoraEntrada(String horaEntrada) { this.horaEntrada = horaEntrada; }
+    public String getHoraEntrada() {
+        return horaEntrada;
+    }
+    public void setHoraEntrada(String horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
 
-    public String getHoraSaida() { return horaSaida; }
-    public void setHoraSaida(String horaSaida) { this.horaSaida = horaSaida; }
+    public String getHoraSaida() {
+        return horaSaida;
+    }
+    public void setHoraSaida(String horaSaida) {
+        this.horaSaida = "17:00";
+    }
 
-    public String getCidade() { return cidade; }
-    public void setCidade(String cidade) { this.cidade = cidade; }
+    public String getCidade() {
+        return cidade;
+    }
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
-    public String getMotivoVisita() { return motivoVisita; }
-    public void setMotivoVisita(String motivoVisita) { this.motivoVisita = motivoVisita; }
+    public String getMotivoVisita() {
+        return motivoVisita;
+    }
+    public void setMotivoVisita(String motivoVisita) {
+        this.motivoVisita = motivoVisita;
+    }
 
     public void exibirInfo() {
         System.out.println("Visitante: " + nome);
@@ -48,7 +80,7 @@ public class Usuario {
         System.out.println("Data de nascimento: " + dataNascimento);
         System.out.println("Data da visita: " + dataVisita);
         System.out.println("Hora de entrada: " + horaEntrada);
-        System.out.println("Hora de saída: " + (horaSaida != null ? horaSaida : "Ainda dentro"));
+        System.out.println("Fechamento do zoológico: " + horaSaida);
         System.out.println("Local visitado: " + cidade);
         System.out.println("Motivo da visita: " + motivoVisita);
     }
