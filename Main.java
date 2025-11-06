@@ -5,7 +5,7 @@ public class Main {
         ArrayList<Animal> zoologico = new ArrayList<>();
         System.out.println("oiiiiiiii==UYGGIUiiiiiiiiiiiiiiii");
         zoologico.add(new Hipopotamo("Bubu", 7, 1500, "cinza", true,
-                "rio", 3.5, 1.2, false, "andar", false, "herbívoro"));
+                "rio", 3.5, 1.2, false, "andar", false, "herbívoro", "50s"));
 
         zoologico.add(new Macaco("Kiki", 3, 35, "marrom", true,
                 "floresta", 1.2, 0.8, false, "pular", true, "onívoro", "12cm"));
