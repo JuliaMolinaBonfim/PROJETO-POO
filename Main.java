@@ -8,7 +8,7 @@ public class Main {
                 "rio", 3.5, 1.2, false, "andar", false, "herbívoro"));
 
         zoologico.add(new Macaco("Kiki", 3, 35, "marrom", true,
-                "floresta", 1.2, 0.8, false, "pular", true, "onívoro"));
+                "floresta", 1.2, 0.8, false, "pular", true, "onívoro", "12cm"));
 
         zoologico.add(new Cobra("Naja", 4, 6.2, "verde", true,
                 "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true, "Jiboia"));
