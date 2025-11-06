@@ -1,4 +1,7 @@
 public class Cobra extends Reptil {
+    private boolean venenoso;
+    private String tipoPele;
+    private boolean botaOvos;
 
     public Cobra(String nome, int idade, double peso, String cor, boolean vivo,
                  String habitat, double tamanho, double altura, boolean emExtincao,
@@ -6,6 +9,10 @@ public class Cobra extends Reptil {
 
         super(nome, idade, peso, cor, vivo, habitat, tamanho, altura, emExtincao,
                 locomocao, venenoso, tipoPele, botaOvos);
+
+        this.venenoso = venenoso;
+        this.tipoPele = tipoPele;
+        this.botaOvos = botaOvos;
     }
 
     public void emitirSom() {

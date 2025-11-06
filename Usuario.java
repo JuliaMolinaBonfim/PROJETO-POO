@@ -34,7 +34,7 @@ public class Usuario {
     public void setHoraEntrada(String horaEntrada) { this.horaEntrada = horaEntrada; }
 
     public String getHoraSaida() { return horaSaida; }
-    public void setHoraSaida(String horaSaida) { this.horaSaida = horaSaida; }
+    public void setHoraSaida(String horaSaida) { this.horaSaida = "17:00"; }
 
     public String getCidade() { return cidade; }
     public void setCidade(String cidade) { this.cidade = cidade; }
