@@ -48,7 +48,7 @@ public class Usuario {
         System.out.println("Data de nascimento: " + dataNascimento);
         System.out.println("Data da visita: " + dataVisita);
         System.out.println("Hora de entrada: " + horaEntrada);
-        System.out.println("Hora de saída: " + (horaSaida != null ? horaSaida : "Ainda dentro"));
+        System.out.println("Fechamento do zoológico: " + horaSaida);
         System.out.println("Local visitado: " + cidade);
         System.out.println("Motivo da visita: " + motivoVisita);
     }
