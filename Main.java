@@ -16,6 +16,9 @@ public class Main {
         zoologico.add(new Jacare("Guto", 9, 300, "verde escuro", true,
                 "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true, "50"));
 
+        zoologico.add(new Girafa("Alex", 8, 800, "Amarela e Preta", true, "Terrestre", 1, 2.5, false,
+                "Patas", false, "Folhas", 30));
+
         System.out.println("\n🐾=== ZOOLÓGICO DOS ANIMAIS ===🐾\n");
 
         for (Animal a : zoologico) {
@@ -48,6 +51,8 @@ public class Main {
                 ((Jacare) a).nadar();
                 ((Jacare) a).morder();
                 ((Jacare) a).tomarSol();
+            } else if (a instanceof Girafa) {
+                ((Girafa) a).comerFolha();
             }
             System.out.println("==================================\n");
         }
