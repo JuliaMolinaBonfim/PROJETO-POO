@@ -14,7 +14,7 @@ public class Main {
                 "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true, "Jiboia"));
 
         zoologico.add(new Jacare("Guto", 9, 300, "verde escuro", true,
-                "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true));
+                "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true, "50"));
 
         System.out.println("\n🐾=== ZOOLÓGICO DOS ANIMAIS ===🐾\n");
 
