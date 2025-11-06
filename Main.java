@@ -11,7 +11,7 @@ public class Main {
                 "floresta", 1.2, 0.8, false, "pular", true, "onívoro"));
 
         zoologico.add(new Cobra("Naja", 4, 6.2, "verde", true,
-                "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true));
+                "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true, "Jiboia"));
 
         zoologico.add(new Jacare("Guto", 9, 300, "verde escuro", true,
                 "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true));
