@@ -1,4 +1,6 @@
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private String nome;
     private String cpf;
     private String dataNascimento;
@@ -8,12 +10,13 @@ public class Usuario {
     private String cidade;
     private String motivoVisita;
 
-    public Usuario(String nome, String cpf, String dataNascimento, String dataVisita, String horaEntrada, String horaSaida, String cidade, String motivoVisita) {
+    public Usuario(String nome, String cpf, String dataNascimento, String dataVisita, String horaEntrada, String cidade, String motivoVisita) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.dataVisita = dataVisita;
         this.horaEntrada = horaEntrada;
+        this.horaSaida = "18:30";
         this.cidade = cidade;
         this.motivoVisita = motivoVisita;
     }
@@ -57,7 +60,7 @@ public class Usuario {
         return horaSaida;
     }
     public void setHoraSaida(String horaSaida) {
-        this.horaSaida = "17:00";
+        this.horaSaida = horaSaida;
     }
 
     public String getCidade() {
@@ -74,14 +77,14 @@ public class Usuario {
         this.motivoVisita = motivoVisita;
     }
 
-    public void exibirInfo() {
-        System.out.println("Visitante: " + nome);
-        System.out.println("CPF: " + cpf);
-        System.out.println("Data de nascimento: " + dataNascimento);
-        System.out.println("Data da visita: " + dataVisita);
-        System.out.println("Hora de entrada: " + horaEntrada);
-        System.out.println("Fechamento do zoológico: " + horaSaida);
-        System.out.println("Local visitado: " + cidade);
-        System.out.println("Motivo da visita: " + motivoVisita);
+    public String toString() {
+        return "Visitante: " + nome +
+                "\nCPF: " + cpf +
+                "\nData de nascimento: " + dataNascimento +
+                "\nData da visita: " + dataVisita +
+                "\nHora de entrada: " + horaEntrada +
+                "\nFechamento do zoológico: " + horaSaida +
+                "\nLocal visitado: " + cidade +
+                "\nMotivo da visita: " + motivoVisita;
     }
 }
