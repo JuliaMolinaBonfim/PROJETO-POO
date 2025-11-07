@@ -15,7 +15,7 @@ public class Zoologico {
 
     public void listarAnimais() {
         System.out.println("Animais do zoológico" + nome + ":");
-        for (Animal a: animais) {
+        for (Animal a : animais) {
             System.out.println("- " + a.getNome());
         }
     }
@@ -23,4 +23,14 @@ public class Zoologico {
     public ArrayList<Animal> getAnimais() {
         return animais;
     }
+
+    public Animal buscarAnimalPorNome(String nome) throws AnimalNaoEncontradoException {
+        for (Animal a : animais) {
+            if (a.getNome().equalsIgnoreCase(nome)) {
+                return a;
+            }
+        }
+        throw new AnimalNaoEncontradoException("Animal '" + nome + "' não encontrado no zoológico!");
+    }
 }
+

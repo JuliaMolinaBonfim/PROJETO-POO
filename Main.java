@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,5 +58,32 @@ public class Main {
             }
             System.out.println("==================================\n");
         }
+
+        Scanner scanner = new Scanner(System.in);
+        String nomeBuscado;
+
+        while (true) {
+            System.out.print("\nDigite o nome do animal que deseja buscar (ou 'sair' para encerrar): ");
+            nomeBuscado = scanner.nextLine();
+
+            if (nomeBuscado.equalsIgnoreCase("sair")) {
+                System.out.println("\n👋 Encerrando o programa. Obrigado por visitar o Zoo das Poderosas!");
+                break;
+            }
+
+            try {
+                Animal encontrado = zoologico.buscarAnimalPorNome(nomeBuscado);
+                System.out.println("\n✅ Animal encontrado!");
+                System.out.println("Nome: " + encontrado.getNome());
+                System.out.println("Espécie: " + encontrado.getClass().getSimpleName());
+                System.out.println("Habitat: " + encontrado.getHabitat());
+                System.out.println("Peso: " + encontrado.getPeso() + " kg");
+                System.out.println("Altura: " + encontrado.getAltura() + " m");
+            } catch (AnimalNaoEncontradoException e) {
+                System.out.println("\n⚠️ Erro: " + e.getMessage());
+            }
+        }
+
+        scanner.close();
     }
 }
