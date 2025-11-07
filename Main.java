@@ -6,18 +6,18 @@ public class Main {
 
         System.out.println("Olá! Seja bem-vindo(a)!");
         zoologico.adicionarAnimal(new Hipopotamo("Bubu", 7, 1500, "cinza", true,
-                "rio", 3.5, 1.2, false, "andar", false, "herbívoro", "50s"));
+                "rio", 3.5 , false, "andar", false, "herbívoro", "50s"));
 
         zoologico.adicionarAnimal(new Macaco("Kiki", 3, 35, "marrom", true,
-                "floresta", 1.2, 0.8, false, "pular", true, "onívoro", "12cm"));
+                "floresta", 1.2 , false, "pular", true, "onívoro", "12cm"));
 
         zoologico.adicionarAnimal(new Cobra("Naja", 4, 6.2, "verde", true,
-                "floresta", 1.5, 0.2, false, "rastejar", true, "escamosa", true, "Jiboia"));
+                "floresta", 1.5, false, "rastejar", true, "escamosa", true, "Jiboia"));
 
         zoologico.adicionarAnimal(new Jacare("Guto", 9, 300, "verde escuro", true,
-                "pântano", 2.5, 0.7, false, "nadar", false, "escamosa", true, "50"));
+                "pântano", 2.5, false, "nadar", false, "escamosa", true, "50"));
 
-        zoologico.adicionarAnimal(new Girafa("Alex", 8, 800, "Amarela e Preta", true, "Terrestre", 1, 2.5, false,
+        zoologico.adicionarAnimal(new Girafa("Alex", 8, 800, "Amarela e Preta", true, "Terrestre", 1, false,
                 "Patas", false, "Folhas", 30));
 
         System.out.println("\n🐾=== ZOO DAS PODEROSAS ===🐾\n");

@@ -2,10 +2,10 @@ public class Macaco extends Mamifero {
     private String tamanhoCalda;
 
     public Macaco(String nome, int idade, double peso, String cor, boolean vivo,
-                  String habitat, double tamanho, double altura, boolean emExtincao,
+                  String habitat, double altura, boolean emExtincao,
                   String locomocao, boolean domesticado, String habitoAlimentar, String tamanhoCalda) {
 
-        super(nome, idade, peso, cor, vivo, habitat, tamanho, altura, emExtincao,
+        super(nome, idade, peso, cor, vivo, habitat, altura, emExtincao,
                 locomocao, domesticado, habitoAlimentar);
 
         this.tamanhoCalda = tamanhoCalda;
