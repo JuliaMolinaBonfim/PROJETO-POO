@@ -15,6 +15,6 @@ public class Girafa extends Mamifero {
     }
 
     public void comerFolha() {
-        System.out.println(getNome() + "está comendo as folhinhas!");
+        System.out.println(getNome() + " está comendo as folhinhas!");
     }
 }
