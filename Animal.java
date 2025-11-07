@@ -5,19 +5,17 @@ abstract class Animal {
     private String cor;
     private boolean vivo;
     private String habitat;
-    private double tamanho;
     private double altura;
     private boolean emExtincao;
     private String locomocao;
 
-    public Animal(String nome, int idade, double peso, String cor, boolean vivo, String habitat, double tamanho, double altura, boolean emExtincao, String locomocao) {
+    public Animal(String nome, int idade, double peso, String cor, boolean vivo, String habitat, double altura, boolean emExtincao, String locomocao) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
         this.cor = cor;
         this.vivo = vivo;
         this.habitat = habitat;
-        this.tamanho = tamanho;
         this.altura = altura;
         this.emExtincao = emExtincao;
         this.locomocao = locomocao;
@@ -71,13 +69,6 @@ abstract class Animal {
     }
     public void setAltura(double altura) {
         this.altura = altura;
-    }
-
-    public double getTamanho() {
-        return tamanho;
-    }
-    public void setTamanho(double tamanho) {
-        this.tamanho = tamanho;
     }
 
     public String getHabitat() {

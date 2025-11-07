@@ -3,10 +3,10 @@ public class Mamifero extends Animal {
     private String habitoAlimentar;
 
     public Mamifero(String nome, int idade, double peso, String cor, boolean vivo,
-                    String habitat, double tamanho, double altura, boolean emExtincao,
+                    String habitat, double altura, boolean emExtincao,
                     String locomocao, boolean domesticado, String habitoAlimentar) {
 
-        super(nome, idade, peso, cor, vivo, habitat, tamanho, altura, emExtincao, locomocao);
+        super(nome, idade, peso, cor, vivo, habitat, altura, emExtincao, locomocao);
         this.domesticado = domesticado;
         this.habitoAlimentar = habitoAlimentar;
 

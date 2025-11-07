@@ -2,10 +2,10 @@ public class Jacare extends Reptil {
     private String numDentes;
 
     public Jacare(String nome, int idade, double peso, String cor, boolean vivo,
-                  String habitat, double tamanho, double altura, boolean emExtincao,
+                  String habitat, double altura, boolean emExtincao,
                   String locomocao, boolean venenoso, String tipoPele, boolean botaOvos, String numDentes) {
 
-        super(nome, idade, peso, cor, vivo, habitat, tamanho, altura, emExtincao,
+        super(nome, idade, peso, cor, vivo, habitat, altura, emExtincao,
                 locomocao, venenoso, tipoPele, botaOvos);
 
         this.numDentes = numDentes;
