@@ -67,6 +67,7 @@ public class AppGUI extends JFrame {
         btnCadastrar.setPreferredSize(new Dimension(300, 80));
         btnCadastrar.setFont(new Font("SansSerif", Font.BOLD, 20));
         btnCadastrar.addActionListener(e -> cardLayout.show(cards, "cadastro"));
+        btnCadastrar.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 
         JButton btnAnimais = new JButton("Conheça Nossos Animais!");
         btnAnimais.setPreferredSize(new Dimension(300, 80));
