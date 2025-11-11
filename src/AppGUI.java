@@ -1,7 +1,7 @@
+package src;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class AppGUI extends JFrame {
@@ -33,13 +33,13 @@ public class AppGUI extends JFrame {
 
     private void montarZoologico() {
         zoologico = new Zoologico("Zoo das Poderosas");
-        zoologico.adicionarAnimal(new Hipopotamo("Bubu", 7, 1500, "cinza", true,
+        zoologico.adicionarAnimal(new Hipopotamo("Juju", 7, 1500, "cinza", true,
                 "rio", 3.5 , false, "andar", false, "herbívoro", "50s"));
 
         zoologico.adicionarAnimal(new Macaco("Kiki", 3, 35, "marrom", true,
                 "floresta", 1.2 , false, "pular", true, "onívoro", "12cm"));
 
-        zoologico.adicionarAnimal(new Cobra("Naja", 4, 6.2, "verde", true,
+        zoologico.adicionarAnimal(new Cobra("Naja", 4, 6.2, "laranja", true,
                 "floresta", 1.5, false, "rastejar", true, "escamosa", true, "Jiboia"));
 
         zoologico.adicionarAnimal(new Jacare("Guto", 9, 300, "verde escuro", true,
@@ -236,8 +236,13 @@ public class AppGUI extends JFrame {
             String imgPath = "/images/" + a.getClass().getSimpleName().toLowerCase() + ".png";
             ImageIcon icon = loadIcon(imgPath, 220, 140);
             JLabel pic = new JLabel();
-            if (icon != null) pic.setIcon(icon);
-            else pic.setText("[imagem]");
+
+            if (icon != null) {
+                pic.setIcon(icon);
+            } else {
+                pic.setText("[imagem]");
+            }
+
             pic.setHorizontalAlignment(SwingConstants.CENTER);
             card.add(pic, BorderLayout.NORTH);
 
@@ -266,17 +271,19 @@ public class AppGUI extends JFrame {
     private ImageIcon loadIcon(String resourcePath, int w, int h) {
         try {
             java.net.URL imgURL = getClass().getResource(resourcePath);
+
+            if (imgURL == null) {
+                String fileName = resourcePath.substring(resourcePath.lastIndexOf('/') + 1);
+                java.io.File f = new java.io.File("images/" + fileName);
+                if (f.exists()) {
+                    imgURL = f.toURI().toURL();
+                }
+            }
+
             if (imgURL != null) {
                 ImageIcon ic = new ImageIcon(imgURL);
                 Image img = ic.getImage().getScaledInstance(w, h, Image.SCALE_SMOOTH);
                 return new ImageIcon(img);
-            } else {
-                java.io.File f = new java.io.File("." + resourcePath);
-                if (f.exists()) {
-                    ImageIcon ic = new ImageIcon(f.getAbsolutePath());
-                    Image img = ic.getImage().getScaledInstance(w, h, Image.SCALE_SMOOTH);
-                    return new ImageIcon(img);
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -284,7 +291,7 @@ public class AppGUI extends JFrame {
         return null;
     }
 
-    private void showAnimalDetails(Animal a) {
+                private void showAnimalDetails(Animal a) {
         StringBuilder sb = new StringBuilder();
         sb.append("Nome: ").append(a.getNome()).append("\n");
         sb.append("Tipo: ").append(a.getClass().getSimpleName()).append("\n");

@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package src;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,13 +7,13 @@ public class Main {
         Zoologico zoologico = new Zoologico("Zoo das Poderosas");
 
         System.out.println("Olá! Seja bem-vindo(a)!");
-        zoologico.adicionarAnimal(new Hipopotamo("Bubu", 7, 1500, "cinza", true,
+        zoologico.adicionarAnimal(new Hipopotamo("Juju", 7, 1500, "cinza", true,
                 "rio", 3.5 , false, "andar", false, "herbívoro", "50s"));
 
         zoologico.adicionarAnimal(new Macaco("Kiki", 3, 35, "marrom", true,
                 "floresta", 1.2 , false, "pular", true, "onívoro", "12cm"));
 
-        zoologico.adicionarAnimal(new Cobra("Naja", 4, 6.2, "verde", true,
+        zoologico.adicionarAnimal(new Cobra("Naja", 4, 6.2, "laranja", true,
                 "floresta", 1.5, false, "rastejar", true, "escamosa", true, "Jiboia"));
 
         zoologico.adicionarAnimal(new Jacare("Guto", 9, 300, "verde escuro", true,
