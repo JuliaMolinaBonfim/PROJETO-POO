@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.format.DateTimeFormatter;
 
 
 import javax.swing.*;
@@ -91,6 +94,13 @@ public class AppGUI extends JFrame {
             cardLayout.show(cards, "animais");
         });
 
+        JButton btnLotacao = new JButton("Previsão de Lotação");
+        btnLotacao.setPreferredSize(new Dimension(300, 80));
+        btnLotacao.setFont(new Font("SansSerif", Font.BOLD, 20));
+        btnLotacao.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+
+        btnLotacao.addActionListener(e -> mostrarPrevisaoLotacao());
+
 
         c.gridx = 0; c.gridy = 0;
         botoes.add(btnCadastrar, c);
@@ -98,6 +108,8 @@ public class AppGUI extends JFrame {
         botoes.add(btnEditar, c);
         c.gridx = 0; c.gridy = 2;
         botoes.add(btnAnimais, c);
+        c.gridx = 0; c.gridy = 3;
+        botoes.add(btnLotacao, c);
 
         p.add(botoes, BorderLayout.CENTER);
 
@@ -339,6 +351,140 @@ public class AppGUI extends JFrame {
             }
         }
     }
+
+    private void mostrarPrevisaoLotacao() {
+        try {
+            String dataStr = JOptionPane.showInputDialog(
+                    this,
+                    "Digite a data (dd/MM/yyyy):",
+                    "Previsão de Lotação",
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (dataStr == null || dataStr.isBlank())
+                return;
+
+            // converter a data
+            LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            DayOfWeek diaSemana = data.getDayOfWeek();
+
+            // quantidade de animais
+            int qtdAnimais = zoologico.getAnimais().size();
+
+            // carregar visitantes cadastrados
+            List<Usuario> todosUsuarios = Serializacao.carregarUsuarios();
+
+            // FILTRAR visitantes que marcaram visita para aquela data
+            long visitantesDoDia = todosUsuarios.stream()
+                    .filter(u -> dataStr.equals(u.getDataVisita()))
+                    .count();
+
+            // fator baseado no dia da semana
+            double fatorDia;
+            switch (diaSemana) {
+                case SATURDAY:
+                case SUNDAY:
+                    fatorDia = 1.8;
+                    break;
+                case FRIDAY:
+                    fatorDia = 1.4;
+                    break;
+                case MONDAY:
+                case THURSDAY:
+                    fatorDia = 1.1;
+                    break;
+                default:
+                    fatorDia = 0.9;
+            }
+
+            // fator aleatório
+            double aleatorio = 0.8 + (Math.random() * 0.4);
+
+            // cálculo base que você já tinha
+            double lotacao = qtdAnimais * fatorDia * aleatorio * 3;
+
+            // adicionar impacto REAL dos visitantes cadastrados
+            lotacao += visitantesDoDia * 2;  // cada visitante aumenta ~2%
+
+            if (lotacao > 100) lotacao = 100;
+
+            // nível da lotação
+            String nivel;
+            if (lotacao < 30) nivel = "Baixa";
+            else if (lotacao < 70) nivel = "Moderada";
+            else nivel = "Alta";
+
+            // JANELA BONITA COM BARRA DE PROGRESSO
+            JDialog dialog = new JDialog(this, "Previsão de Lotação", true);
+            dialog.setSize(420, 330);
+            dialog.setLayout(new BorderLayout());
+            dialog.setLocationRelativeTo(this);
+
+            JPanel painel = new JPanel();
+            painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
+            painel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+            JLabel titulo = new JLabel("Previsão para " + dataStr, SwingConstants.CENTER);
+            titulo.setFont(new Font("SansSerif", Font.BOLD, 18));
+            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            JLabel visitantesLabel = new JLabel(
+                    "Visitantes cadastrados para este dia: " + visitantesDoDia
+            );
+            visitantesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            JLabel animaisLabel = new JLabel(
+                    "Animais no zoológico: " + qtdAnimais
+            );
+            animaisLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            JLabel nivelLabel = new JLabel(
+                    String.format("Lotação prevista: %.0f%% (%s)", lotacao, nivel)
+            );
+            nivelLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
+            nivelLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            // BARRA DE PROGRESSO
+            JProgressBar barra = new JProgressBar(0, 100);
+            barra.setValue((int) lotacao);
+            barra.setStringPainted(true);
+            barra.setFont(new Font("SansSerif", Font.BOLD, 14));
+            barra.setPreferredSize(new Dimension(300, 35));
+
+            painel.add(titulo);
+            painel.add(Box.createVerticalStrut(10));
+            painel.add(visitantesLabel);
+            painel.add(animaisLabel);
+            painel.add(Box.createVerticalStrut(15));
+            painel.add(nivelLabel);
+            painel.add(Box.createVerticalStrut(10));
+            painel.add(barra);
+
+            JLabel observacao = new JLabel(
+                    "<html><div style='text-align:center;'>Baseado na movimentação dos dias da semana<br>e nos visitantes cadastrados</div></html>"
+            );
+            observacao.setHorizontalAlignment(SwingConstants.CENTER);
+            observacao.setAlignmentX(Component.CENTER_ALIGNMENT);
+            observacao.setFont(new Font("SansSerif", Font.ITALIC, 12));
+            painel.add(Box.createVerticalStrut(10));
+            painel.add(observacao);
+
+            JButton fechar = new JButton("Fechar");
+            fechar.addActionListener(e -> dialog.dispose());
+
+            JPanel south = new JPanel();
+            south.add(fechar);
+
+            dialog.add(painel, BorderLayout.CENTER);
+            dialog.add(south, BorderLayout.SOUTH);
+            dialog.setVisible(true);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data inválida! Use o formato dd/MM/yyyy.");
+        }
+    }
+
+
 
 
     private JPanel criarAnimaisPanel() {
