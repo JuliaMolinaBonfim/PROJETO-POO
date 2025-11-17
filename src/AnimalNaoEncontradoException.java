@@ -1,4 +1,4 @@
-package src;
+
 
 public class AnimalNaoEncontradoException extends Exception {
     public AnimalNaoEncontradoException(String mensagem) {

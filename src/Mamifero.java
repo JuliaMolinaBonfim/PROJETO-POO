@@ -1,4 +1,4 @@
-package src;
+
 
 public class Mamifero extends Animal {
     private boolean domesticado;

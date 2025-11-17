@@ -1,4 +1,4 @@
-package src;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +23,7 @@ public class AppGUI extends JFrame {
         cards.add(criarHomePanel(), "home");
         cards.add(criarCadastroPanel(), "cadastro");
         cards.add(criarAnimaisPanel(), "animais");
+        cards.add(criarEditarPanel(), "editar");
 
         add(cards);
         cardLayout.show(cards, "home");
@@ -69,6 +70,15 @@ public class AppGUI extends JFrame {
         btnCadastrar.addActionListener(e -> cardLayout.show(cards, "cadastro"));
         btnCadastrar.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 
+        JButton btnEditar = new JButton("Editar Usuário pelo CPF");
+        btnEditar.setPreferredSize(new Dimension(300, 80));
+        btnEditar.setFont(new Font("SansSerif", Font.BOLD, 20));
+        btnEditar.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+
+        btnEditar.addActionListener(e -> {
+            cardLayout.show(cards, "editar");
+        });
+
         JButton btnAnimais = new JButton("Conheça Nossos Animais!");
         btnAnimais.setPreferredSize(new Dimension(300, 80));
         btnAnimais.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -81,9 +91,12 @@ public class AppGUI extends JFrame {
             cardLayout.show(cards, "animais");
         });
 
+
         c.gridx = 0; c.gridy = 0;
         botoes.add(btnCadastrar, c);
         c.gridx = 0; c.gridy = 1;
+        botoes.add(btnEditar, c);
+        c.gridx = 0; c.gridy = 2;
         botoes.add(btnAnimais, c);
 
         p.add(botoes, BorderLayout.CENTER);
@@ -140,29 +153,39 @@ public class AppGUI extends JFrame {
         c.gridx = 1; c.gridy = 1;
         form.add(cpfF, c);
 
-        c.gridx = 0; c.gridy = 2;
-        form.add(nascL, c);
-        c.gridx = 1; c.gridy = 2;
-        form.add(nascF, c);
+        JLabel avisoCPF = new JLabel("⚠️ Cuidado: você não poderá alterar o CPF futuramente.");
+        avisoCPF.setForeground(Color.RED); // texto vermelho
+        avisoCPF.setFont(new Font("SansSerif", Font.BOLD, 12));
+
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 2;
+        form.add(avisoCPF, c);
+        c.gridwidth = 1;
 
         c.gridx = 0; c.gridy = 3;
-        form.add(visitaL, c);
+        form.add(nascL, c);
         c.gridx = 1; c.gridy = 3;
-        form.add(visitaF, c);
+        form.add(nascF, c);
 
         c.gridx = 0; c.gridy = 4;
-        form.add(horaL, c);
+        form.add(visitaL, c);
         c.gridx = 1; c.gridy = 4;
-        form.add(horaF, c);
+        form.add(visitaF, c);
 
         c.gridx = 0; c.gridy = 5;
-        form.add(cidadeL, c);
+        form.add(horaL, c);
         c.gridx = 1; c.gridy = 5;
-        form.add(cidadeF, c);
+        form.add(horaF, c);
 
         c.gridx = 0; c.gridy = 6;
-        form.add(motivoL, c);
+        form.add(cidadeL, c);
         c.gridx = 1; c.gridy = 6;
+        form.add(cidadeF, c);
+
+        c.gridx = 0; c.gridy = 7;
+        form.add(motivoL, c);
+        c.gridx = 1; c.gridy = 7;
         form.add(motivoF, c);
 
         p.add(form, BorderLayout.CENTER);
@@ -217,6 +240,106 @@ public class AppGUI extends JFrame {
 
         return p;
     }
+
+    private JPanel criarEditarPanel() {
+        JPanel p = new JPanel(new BorderLayout());
+        p.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel title = new JLabel("Editar Usuário pelo CPF", SwingConstants.CENTER);
+        title.setFont(new Font("SansSerif", Font.BOLD, 22));
+        p.add(title, BorderLayout.NORTH);
+
+        JPanel form = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(5, 5, 5, 5);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 1;
+
+        JLabel cpfL = new JLabel("Digite o CPF:");
+        JTextField cpfF = new JTextField();
+
+        JButton buscar = new JButton("Buscar Usuário");
+
+        c.gridx = 0; c.gridy = 0;
+        form.add(cpfL, c);
+        c.gridx = 1; c.gridy = 0;
+        form.add(cpfF, c);
+
+        c.gridx = 1; c.gridy = 1;
+        form.add(buscar, c);
+
+        p.add(form, BorderLayout.CENTER);
+
+        JButton voltar = new JButton("Voltar");
+        voltar.addActionListener(e -> cardLayout.show(cards, "home"));
+        p.add(voltar, BorderLayout.SOUTH);
+
+
+        buscar.addActionListener(e -> {
+            String cpf = Serializacao.sanitizarCpf(cpfF.getText().trim());
+
+            try {
+                List<Usuario> usuarios = Serializacao.carregarUsuarios();
+                Usuario user = usuarios.stream()
+                        .filter(u -> u.getCpf().equals(cpf))
+                        .findFirst()
+                        .orElse(null);
+
+                if (user == null) {
+                    JOptionPane.showMessageDialog(this, "Usuário não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                abrirJanelaEdicao(user, usuarios);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao buscar: " + ex.getMessage());
+            }
+        });
+
+        return p;
+    }
+
+    private void abrirJanelaEdicao(Usuario u, List<Usuario> usuarios) {
+        JTextField nomeF = new JTextField(u.getNome());
+        JTextField nascF = new JTextField(u.getDataNascimento());
+        JTextField visitaF = new JTextField(u.getDataVisita());
+        JTextField horaF = new JTextField(u.getHoraEntrada());
+        JTextField cidadeF = new JTextField(u.getCidade());
+        JTextField motivoF = new JTextField(u.getMotivoVisita());
+
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel.add(new JLabel("Nome:")); panel.add(nomeF);
+        panel.add(new JLabel("Nascimento:")); panel.add(nascF);
+        panel.add(new JLabel("Data Visita:")); panel.add(visitaF);
+        panel.add(new JLabel("Hora Entrada:")); panel.add(horaF);
+        panel.add(new JLabel("Cidade:")); panel.add(cidadeF);
+        panel.add(new JLabel("Motivo:")); panel.add(motivoF);
+
+        int res = JOptionPane.showConfirmDialog(this, panel, "Editar Usuário", JOptionPane.OK_CANCEL_OPTION);
+
+        if (res == JOptionPane.OK_OPTION) {
+            try {
+                // atualizar
+                u.setNome(nomeF.getText().trim());
+                u.setDataNascimento(nascF.getText().trim());
+                u.setDataVisita(visitaF.getText().trim());
+                u.setHoraEntrada(horaF.getText().trim());
+                u.setCidade(cidadeF.getText().trim());
+                u.setMotivoVisita(motivoF.getText().trim());
+
+                Serializacao.salvarUsuarios(usuarios);
+
+                JOptionPane.showMessageDialog(this, "Usuário atualizado com sucesso!");
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
+            }
+        }
+    }
+
 
     private JPanel criarAnimaisPanel() {
         JPanel p = new JPanel(new BorderLayout());

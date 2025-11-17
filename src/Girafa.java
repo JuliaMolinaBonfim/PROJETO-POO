@@ -1,4 +1,4 @@
-package src;
+
 
 public class Girafa extends Mamifero {
     private double tamanhoPescoco;
