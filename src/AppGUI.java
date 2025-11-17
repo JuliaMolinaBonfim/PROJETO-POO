@@ -356,7 +356,17 @@ public class AppGUI extends JFrame {
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
             card.setBackground(Color.WHITE);
 
-            String imgPath = "/images/" + a.getClass().getSimpleName().toLowerCase() + ".png";
+            String baseName = a.getClass().getSimpleName().toLowerCase();
+            String imgPath = null;
+
+            if (getClass().getResource("/images/" + baseName + ".png") != null) {
+                imgPath = "/images/" + baseName + ".png";
+            } else if (getClass().getResource("/images/" + baseName + ".jpg") != null) {
+                imgPath = "/images/" + baseName + ".jpg";
+            } else if (getClass().getResource("/images/" + baseName + ".jpeg") != null) {
+                imgPath = "/images/" + baseName + ".jpeg";
+            }
+
             ImageIcon icon = loadIcon(imgPath, 220, 140);
             JLabel pic = new JLabel();
 
