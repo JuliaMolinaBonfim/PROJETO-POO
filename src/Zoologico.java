@@ -16,7 +16,7 @@ public class Zoologico {
     }
 
     public void listarAnimais() {
-        System.out.println("Animais do zoológico" + nome + ":");
+        System.out.println("Animais do zoológico "  + nome + ":");
         for (Animal a : animais) {
             System.out.println("- " + a.getNome());
         }

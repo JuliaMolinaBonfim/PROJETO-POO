@@ -35,6 +35,8 @@ public class Main {
             System.out.println("Vivo: " + (a.isVivo() ? "Sim" : "Não"));
             System.out.println("----------------------------------");
 
+
+
             a.emitirSom();
             a.mover();
 
@@ -59,6 +61,8 @@ public class Main {
             }
             System.out.println("==================================\n");
         }
+
+        zoologico.listarAnimais();
 
         Scanner scanner = new Scanner(System.in);
         String nomeBuscado;
